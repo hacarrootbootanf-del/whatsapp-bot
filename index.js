@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // 🔑 ضع توكن البوت هنا
-const token = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
+const token = process.env.BOT_TOKEN || '6834452190:AAHw0MIHXlupe9_EIH4fxMbxEMu5gw2LIjw';
 const bot = new TelegramBot(token, { polling: true });
 
 // لتخزين الأرقام مؤقتاً
